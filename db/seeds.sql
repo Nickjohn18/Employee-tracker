@@ -23,5 +23,3 @@ VALUES
 (3, "Thach", "Mai", 3, 3),
 (4, "Jeff", "Maisonet", 1, 1);
 
-
-

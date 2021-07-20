@@ -1,7 +1,8 @@
 const inquirer = require("inquirer");
 const cTable = require("console.table");
 const connection = require("./db/connection");
-const { table } = require("console");
+const { table, Console } = require("console");
+const { start } = require("repl");
 
 connection.connect((err) => {
   if (err) throw err;
@@ -50,6 +51,7 @@ function viewDepartment() {
   connection.query(department, (err, res) => {
     if (err) return err;
     console.table(res);
+    startQuestion();
   });
 }
 
@@ -59,6 +61,7 @@ function viewRoles() {
   connection.query(role, (err, res) => {
     if (err) return err;
     console.table(res);
+    startQuestion();
   });
 }
 
@@ -68,19 +71,77 @@ function viewEmployees() {
   connection.query(allEmployee, (err, res) => {
     if (err) return err;
     console.table(res);
+    startQuestion();
   });
 }
 
 function addDepartment() {
   console.log("Adding a department!");
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "department",
+        message: "What department would you like to add?",
+      },
+    ])
+    .then((data) => {
+      // const department = `INSERT INTO department SET ? {title:}`;
+      connection.query(
+        `INSERT INTO department (department_name) VALUES ("${data.department}");`,
+        (err, res) => {
+          if (err) return err;
+          console.log("Added department!");
+          startQuestion();
+        }
+      );
+    });
 }
 
 function addRole() {
   console.log("Adding a role!");
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "title",
+        message: "Enter role or title",
+      },
+      {
+        type: "input",
+        name: "salary",
+        message: "Enter role salary",
+      },
+      // {
+      //   type: "input",
+      //   name: "department",
+      //   message: "Enter role department",
+      // },
+    ])
+    .then((data) => {
+      const newRole = `INSERT INTO role (title, salary) VALUES ("${data.title}", ${data.salary});`;
+      connection.query(newRole, (err, res) => {
+        if (err) return err;
+        console.log("New role has been added!");
+        startQuestion();
+      });
+    });
 }
 
 function addEmployee() {
   console.log("Adding a employee!");
+  inquirer.prompt([
+    {
+      type: "input",
+      name: "first",
+      message: "Enter your employee's first name",
+    },
+    {
+      type: "input",
+      name: "last",
+      message: "Enter your employee's last name",
+    },
+  ]);
 }
 
 function updateEmployee() {
