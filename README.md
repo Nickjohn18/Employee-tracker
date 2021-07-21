@@ -4,7 +4,7 @@
 
 A node application for a business owner to view and manage departments, roles and employees in their company.
 
-(chrome-extension://mmeijimgabbpbgpdklnllpncmdofkcpn/app.html#/files/acdb784d-9958-494c-y402-b5a235caa8e8)
+(https://drive.google.com/file/d/1g-ZKSQKWl2V8jRT6Pg3b5Sd7flRA06WT/view)
 
 ## Table of Contents
 
