@@ -21,5 +21,5 @@ VALUES
 (1, "Nick", "De Luna", 1, 1),
 (2, "Lamp", "Nguyen", 2, 2),
 (3, "Thach", "Mai", 3, 3),
-(4, "Jeff", "Maisonet", 1, 1);
+(4, "Jeff", "Maisonet", 1, 4);
 
